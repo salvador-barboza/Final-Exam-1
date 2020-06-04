@@ -1,4 +1,4 @@
-function errorHandler(error, req, res) {
+function errorHandler(req, res) {
     /* 
 
         Your code goes here

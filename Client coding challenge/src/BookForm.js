@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useRef } from 'react'
 
 function BookForm( props ){
-    return(
+    const inputRef = useRef()
+    return (
         <div>
-            {/*
-                Your code goes here
-            */}
+            <form onSubmit={ev => {
+                ev.preventDefault()
+                props.onSearch(inputRef.current.value)
+            }}>
+                <label>
+                    Name of the book:
+                    <input ref={inputRef} />
+                </label>
+                <button>Submit</button>
+            </form>
         </div>
     );
 }

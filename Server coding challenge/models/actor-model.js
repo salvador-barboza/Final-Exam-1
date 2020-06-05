@@ -28,11 +28,19 @@ const Actors = {
                 .catch( err => {
                     throw new Error( err );
                 });
-    }
-    /*
-        Your code goes here
-    */
+    },
+    getActorByName: function (firstName, lastName) {
+        return actorsCollection.
+            findOne({ firstName, lastName })
+            .then((actors) => {
+                return actors
+            })
+            .catch( err => {
+                throw new Error( err );
+            });
+    },
 }
+
 
 module.exports = {
     Actors

@@ -37,10 +37,27 @@ const Movies = {
                 .catch( err => {
                     throw new Error( err );
                 });
+    },
+    getMovieByID: function (movie_ID) {
+        return moviesCollection.
+            findOne({ movie_ID })
+            .populate("actors")
+            .then(movie => {
+                return movie
+            })
+            .catch( err => {
+                throw new Error( err );
+            });
+    },
+    removeActorFromMovieList: function(movie_ID, actor_ID) {
+        return moviesCollection
+            .findOne({ movie_ID })
+            .populate("actors")
+            .then(movie => {
+                movie.actors = movie.actors.filter(x => x.actor_ID != actor_ID)
+                return movie.save()
+            })
     }
-    /*
-        Your code goes here
-    */
 }
 
 module.exports = {
